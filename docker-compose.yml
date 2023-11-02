@@ -1,0 +1,32 @@
+version: "3.3"
+services:
+  warp-cli:
+    platform: linux/x86_64
+    image: hackertwo/h1-vpn
+    privileged: true
+    networks:
+      - default
+    stdin_open: true
+    tty: true
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0
+    security_opt:
+      - label:disable
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    volumes:
+      - ./warp:/var/lib/cloudflare-warp
+    command: bash
+    ports:
+      - "1080:1080"
+  socks:
+    image: serjs/go-socks5-proxy
+    depends_on:
+      - warp-cli
+    environment:
+      - PROXY_USER=${PROXY_USER}
+      - PROXY_PASSWORD=${PROXY_PASSWORD}
+    network_mode: "service:warp-cli"
+    stdin_open: true
+    tty: true
