@@ -15,23 +15,32 @@ Docker image to connect to the HackerOne Gateway (VPN) through a socks5 proxy.
 
 * Register a new Cloudflare WARP account by connecting to a HackerOne program
 * Connect/disconnect from VPN
-* Use socks5 proxy with optional authentication on port `1080`
+* Use socks5 proxy with optional authentication
 
 ## Usage
 
 ### Environment Variables
 
-You can set username and password to connect to the proxy: `PROXY_USER` and `PROXY_PASSWORD`. 
+Environment variables are defined in `.env` file.
 
-Leave these variables blank to skip authentication while connecting to the socks5 server. 
+- `PROXY_USER`
+- `PROXY_PASSWORD`
+- `PROXY_PORT`
+
+You can set `PROXY_USER` and `PROXY_PASSWORD` to connect to the proxy. Leave these variables blank to skip authentication while connecting to the socks5 server.
+
+Leave `PROXY_PORT` blank to use the default port `1080`.
+
 
 ### Steps
 
 1. Start the container:
 
      ```
-     PROXY_USER=<PROXY_USER> PROXY_PASSWORD=<PROXY_PASSWORD> docker-compose up -d
+     PROXY_USER=<PROXY_USER> PROXY_PASSWORD=<PROXY_PASSWORD> PROXY_PORT=<PROXY_PORT> docker-compose up -d
      ```
+     
+     Leave out the environment variables to use the varibles from the `.env` file.
 
 2. Check the connection status:
 
@@ -84,7 +93,7 @@ Leave these variables blank to skip authentication while connecting to the socks
      Organization: <team-domain>
      ```
 
-7. Test request example given `PROXY_USER=admin` and `PROXY_PASSWORD=admin`:
+7. Test request example given `PROXY_USER=admin`, `PROXY_PASSWORD=admin` and `PROXY_PORT=1080`:
 
      ```
      curl --socks5-hostname admin:admin@localhost:1080 -k https://ifconfig.me

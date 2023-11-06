@@ -19,7 +19,7 @@ services:
       - ./warp:/var/lib/cloudflare-warp
     command: bash
     ports:
-      - "1080:1080"
+      - "${PROXY_PORT:-1080}:${PROXY_PORT:-1080}"
   socks:
     image: serjs/go-socks5-proxy
     depends_on:
@@ -27,6 +27,7 @@ services:
     environment:
       - PROXY_USER=${PROXY_USER}
       - PROXY_PASSWORD=${PROXY_PASSWORD}
+      - PROXY_PORT=${PROXY_PORT:-1080}
     network_mode: "service:warp-cli"
     stdin_open: true
     tty: true
