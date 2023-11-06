@@ -103,4 +103,6 @@ Leave `PROXY_PORT` blank to use the default port `1080`.
      docker compose exec -it warp-cli warp-cli --accept-tos disconnect
      ```
 
+## License
 
+Copyright (c) 2014-2023 HackerOne Inc. and individual contributors. Licensed under MIT license, see [LICENSE](LICENSE) for the full license.
