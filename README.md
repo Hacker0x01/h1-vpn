@@ -51,7 +51,7 @@ Leave these variables blank to skip authentication while connecting to the socks
      docker-compose exec -it warp-cli warp-cli --accept-tos teams-enroll <team-domain>
      ```
 
-     Follow [this documentation](https://docs.hackerone.com/hackers/warp-client-config.html#linux) to obtain the token.
+     Follow [this documentation](https://docs.hackerone.com/en/articles/8470736-configure-client-for-a-specific-program#h_b5f809a7f1) to obtain the token.
 
      ```
      docker-compose exec -it warp-cli warp-cli --accept-tos teams-enroll-token <token>
