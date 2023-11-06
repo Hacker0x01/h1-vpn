@@ -37,45 +37,43 @@ Leave `PROXY_PORT` blank to use the default port `1080`.
 1. Start the container:
 
      ```
-     PROXY_USER=<PROXY_USER> PROXY_PASSWORD=<PROXY_PASSWORD> PROXY_PORT=<PROXY_PORT> docker-compose up -d
+     docker compose up -d
      ```
      
-     Leave out the environment variables to use the varibles from the `.env` file.
-
 2. Check the connection status:
 
      ```
-     docker-compose exec -it warp-cli warp-cli --accept-tos status
+     docker compose exec -it warp-cli warp-cli --accept-tos status
      ```
 
      If you see an error `Error: "Unable to connect to CloudflareWARP daemon. Maybe the daemon is not running?"`, run the following command to start CloudflareWARP daemon.
 
      ```
-     docker-compose exec -it warp-cli warp-svc &
+     docker compose exec -it warp-cli warp-svc &
      ``` 
 
 3. Register to a HackerOne program. Find the team-domain on your [Gateway Programs page](https://hackerone.com/settings/gateway).
 
      ```
-     docker-compose exec -it warp-cli warp-cli --accept-tos teams-enroll <team-domain>
+     docker compose exec -it warp-cli warp-cli --accept-tos teams-enroll <team-domain>
      ```
 
      Follow [this documentation](https://docs.hackerone.com/en/articles/8470736-configure-client-for-a-specific-program#h_b5f809a7f1) to obtain the token.
 
      ```
-     docker-compose exec -it warp-cli warp-cli --accept-tos teams-enroll-token <token>
+     docker compose exec -it warp-cli warp-cli --accept-tos teams-enroll-token "<token>"
       ```
 
 4. Once you are registered for a program, you can connect and disconnect from the VPN with one line of command. Connect to the VPN:
 
      ```
-     docker-compose exec -it warp-cli warp-cli --accept-tos connect
+     docker compose exec -it warp-cli warp-cli --accept-tos connect
       ```
 
 5. Check the connection status:
 
      ```
-     docker-compose exec -it warp-cli warp-cli --accept-tos status
+     docker compose exec -it warp-cli warp-cli --accept-tos status
    
      Status update: Connected
      Success
@@ -84,7 +82,7 @@ Leave `PROXY_PORT` blank to use the default port `1080`.
 6. Check the account details. Make sure that Account type is `Team` and Organization shows the intended team domain.
 
      ```
-     docker-compose exec -it warp-cli warp-cli account
+     docker compose exec -it warp-cli warp-cli account
 
      Account type: Team
      Device ID: <device_id>
@@ -102,7 +100,7 @@ Leave `PROXY_PORT` blank to use the default port `1080`.
 8. Disconnect from the VPN:
 
      ```
-     docker-compose exec -it warp-cli warp-cli --accept-tos disconnect
+     docker compose exec -it warp-cli warp-cli --accept-tos disconnect
      ```
 
 
